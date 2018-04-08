@@ -1,7 +1,9 @@
 #ifndef USERINTERFACE_HPP
 #define USERINTERFACE_HPP
 
+#include <algorithm>
 #include <iomanip>
+#include <random>
 #include <vector>
 #include "Client.hpp"
 

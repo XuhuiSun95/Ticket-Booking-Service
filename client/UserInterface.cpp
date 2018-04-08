@@ -97,20 +97,46 @@ void UserInterface::BuyTickets() {
     std::cout << "Processing..." << std::endl;
 
     Client *client = new Client();
-    client->Init(mServerList[0].first, mServerList[0].second);
+
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(0, mServers-1);
+    int server = dist(mt);
+
+    client->Init(mServerList[server].first, mServerList[server].second);
 
     if(client->Valid()) {
 
         std::string request;
-        std::cout << "Please enter the request in the follow form:" 
-                  << "{buy: <movies, n>} or {buy: <plays, n>}";
-        std::getline(std::cin, request);
+        std::size_t ws;
+
+        std::cout << "Please enter the request in the follow form:" << std::endl;
+        std::cout << "<movies, n> or <plays, n>" << std::endl;
+
+        while(true) {
+
+            std::getline(std::cin >> std::ws, request);
+            ws = request.find(" ");
+
+            if((request.find("movies")!=std::string::npos
+               || request.find("plays")!=std::string::npos)
+               && ws!=std::string::npos
+               && std::all_of(request.begin()+ws+1, request.end(), ::isdigit)) {
+                break;
+            } else {
+                std::cout << "Invalid input! Please enter the request again." << std::endl;
+                request.clear();
+            }
+        }
+        request += "\n";
+
         client->RequestTicket(request);
     }
     else {
 
         std::cout << "Socket Init Error! Please check your environment." << std::endl;
         std::cout << std::endl;
+
         mServers = -1;
         mServerList.clear();
     }
