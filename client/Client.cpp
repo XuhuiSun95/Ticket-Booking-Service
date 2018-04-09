@@ -2,7 +2,7 @@
 
 Client::Client() {
 
-    memset(buffer,0,sizeof(buffer));
+    memset(buffer, 0, sizeof(buffer));
     mValid = false;
 }
 

@@ -10,7 +10,6 @@ UserInterface::UserInterface() {
 
     mQuit = false;
     mServers = -1;
-    mServerList.clear();
 }
 
 UserInterface::~UserInterface() {
