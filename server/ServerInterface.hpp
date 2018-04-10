@@ -1,9 +1,8 @@
 #ifndef SERVERINTERFACE_HPP
 #define SERVERINTERFACE_HPP
 
-#include <iostream>
 #include <iomanip>
-#include <string>
+#include "ServerSocket.hpp"
 
 class ServerInterface {
 

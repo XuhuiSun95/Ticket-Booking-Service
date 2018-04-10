@@ -1,5 +1,5 @@
-#ifndef CLIENT_HPP
-#define CLIENT_HPP
+#ifndef CLIENTSOCKET_HPP
+#define CLIENTSOCKET_HPP
 
 #include <iostream>
 #include <string>
@@ -8,12 +8,12 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-class Client {
+class ClientSocket {
 
 public:
 
-    Client();
-    ~Client();
+    ClientSocket();
+    ~ClientSocket();
 
     void Init(const std::string &ipaddress, const int &port);
     bool Valid();

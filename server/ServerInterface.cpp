@@ -142,4 +142,26 @@ void ServerInterface::PrintStatus() {
 }
 
 void ServerInterface::Host() {
+
+    std::cout << "Hosting..." << std::endl;
+    mServer = true;
+
+    ServerSocket *server = new ServerSocket();
+
+    server->Init(mServerInfo.first, mServerInfo.second, true);
+
+    if(server->Valid()) {
+
+        server->AcceptLoop();
+    }
+    else {
+
+        std::cout << "Server Init Error! Please check your environment." << std::endl;
+        std::cout << std::endl;
+
+        mServerName = "";
+    }
+
+    delete server;
+    mServer = false;
 }

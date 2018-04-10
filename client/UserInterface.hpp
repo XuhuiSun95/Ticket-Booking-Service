@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <random>
 #include <vector>
-#include "Client.hpp"
+#include "ClientSocket.hpp"
 
 class UserInterface {
 

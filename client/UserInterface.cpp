@@ -95,7 +95,7 @@ void UserInterface::BuyTickets() {
 
     std::cout << "Processing..." << std::endl;
 
-    Client *client = new Client();
+    ClientSocket *client = new ClientSocket();
 
     std::random_device rd;
     std::mt19937 mt(rd());

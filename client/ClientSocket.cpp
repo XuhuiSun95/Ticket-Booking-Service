@@ -1,17 +1,17 @@
-#include "Client.hpp"
+#include "ClientSocket.hpp"
 
-Client::Client() {
+ClientSocket::ClientSocket() {
 
     memset(buffer, 0, sizeof(buffer));
     mValid = false;
 }
 
-Client::~Client() {
+ClientSocket::~ClientSocket() {
 
     close(mSockfd);
 }
 
-void Client::Init(const std::string &ipaddress, const int &port) {
+void ClientSocket::Init(const std::string &ipaddress, const int &port) {
 
     if((mSockfd = socket(AF_INET, SOCK_STREAM, 0))<0) {
         std::cout << "Socket creation error" << std::endl;
@@ -35,12 +35,12 @@ void Client::Init(const std::string &ipaddress, const int &port) {
     mValid = true;
 }
 
-bool Client::Valid() {
+bool ClientSocket::Valid() {
     
     return mValid;
 }
 
-void Client::RequestTicket(const std::string &message) {
+void ClientSocket::RequestTicket(const std::string &message) {
 
     send(mSockfd, message.c_str(), message.length(), 0);
     std::cout << "Request send" << std::endl;
