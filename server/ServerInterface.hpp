@@ -2,7 +2,7 @@
 #define SERVERINTERFACE_HPP
 
 #include <iomanip>
-#include "ServerSocket.hpp"
+#include "Server.hpp"
 
 class ServerInterface {
 
@@ -22,7 +22,6 @@ private:
 
     bool mQuit;
     bool mServer;
-    int mTickets;
     std::string mServerName;
     std::pair<std::string, int> mServerInfo;
     std::pair<std::string, int> mPairInfo;

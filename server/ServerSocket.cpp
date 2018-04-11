@@ -31,7 +31,7 @@ void ServerSocket::Init(const std::string &ipaddress, const int &port, bool host
             return;
         }
 
-        if(listen(mSockfd, 1)<0) {
+        if(listen(mSockfd, 10)<0) {
             std::cout << "Listen Failed" << std::endl;
             return;
         }
@@ -57,7 +57,7 @@ bool ServerSocket::Valid() {
     return mValid;
 }
 
-int ServerSocket::AcceptLoop() {
+int ServerSocket::Accept() {
 
     int addrlen = sizeof(mAddress);
     int new_socket;
@@ -70,10 +70,25 @@ int ServerSocket::AcceptLoop() {
     return new_socket;
 }
 
-std::string ServerSocket::HandleRequest() {
+std::string GetMessage(const int &sock) {
 
-    return "okay";
+    char* buf = new char[1024];
+    //mValread = read(sock, buf, 1024);
+    read(sock, buf, 1024);
+    std::string message = buf;
+    delete[] buf;
+    
+    return message;
+}
+
+void ServerSocket::SendMessage(const int &sock, const std::string &message) {
+
+    send(sock, message.c_str(), message.length(), 0);
+
+    close(sock);
 }
 
 void ServerSocket::ForwardTicket() {
+
+
 }

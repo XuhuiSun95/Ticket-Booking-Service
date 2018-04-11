@@ -18,15 +18,15 @@ public:
 
     void Init(const std::string &ipaddress, const int &port, bool host=true);
     bool Valid();
-    int AcceptLoop();
-    std::string HandleRequest();
+    int Accept();
+    std::string GetMessage(const int &sock);
+    void SendMessage(const int &sock, const std::string &message);
     void ForwardTicket();
 
 private:
 
     bool mValid;
     int mSockfd, mValread;
-    std::vector<int> mClientList;
     struct sockaddr_in mAddress;
     char buffer[1024];
 };

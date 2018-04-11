@@ -10,7 +10,6 @@ ServerInterface::ServerInterface() {
 
     mQuit = false;
     mServer = false;
-    mTickets = 50;
 }
 
 ServerInterface::~ServerInterface() {
@@ -125,9 +124,6 @@ void ServerInterface::PrintStatus() {
     std::cout << std::setw(48 - std::to_string(mServerInfo.second).length()) 
               << std::left << "| port #: " << mServerInfo.second
               << " |" << std::endl;
-    std::cout << std::setw(48 - std::to_string(mTickets).length())
-              << std::left << "| Tickets left: " << mTickets 
-              << " |" << std::endl;
     std::cout << "--------------------------------------------------" << std::endl;
     std::cout << "|" 
               << std::setw(32) << std::right << "Pair Server INFO"
@@ -146,13 +142,11 @@ void ServerInterface::Host() {
     std::cout << "Hosting..." << std::endl;
     mServer = true;
 
-    ServerSocket *server = new ServerSocket();
-
-    server->Init(mServerInfo.first, mServerInfo.second, true);
+    Server *server = new Server(mServerInfo, mPairInfo);
 
     if(server->Valid()) {
 
-        server->AcceptLoop();
+        server->Run(mServerName);
     }
     else {
 
