@@ -28,11 +28,13 @@ void Server::Run(const std::string &type) {
     while(true) {
 
         int sockfd = mServer->Accept();
-        std::thread (&Server::ProcessTicket, sockfd, type).detach();
+        std::thread t(&Server::ProcessTicket, std::ref(sockfd), std::ref(type));
+        t.detach();
+
     }
 }
 
-void Server::ProcessTicket(const int &sock, const std::string &type) {
+void Server::ProcessTicket(int &sock, std::string &type) {
 
     std::string msg = mServer->GetMessage(sock);
 

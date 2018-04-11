@@ -1,8 +1,10 @@
 #ifndef SERVER_HPP
 #define SERVER_HPP
 
+#include <functional>
 #include <thread>
 #include <mutex>
+#include <vector>
 #include "ServerSocket.hpp"
 
 class Server {
@@ -18,7 +20,7 @@ public:
 
 private:
 
-    void ProcessTicket(const int &sock, const std::string &type);
+    void ProcessTicket(int &sock, std::string &type);
     std::string HandleRequest(const int &amount);
 
     bool mValid;
