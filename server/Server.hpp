@@ -20,7 +20,7 @@ public:
 
 private:
 
-    void ProcessTicket(int &sock, std::string &type);
+    void ProcessTicket(const int &sock, const std::string &type);
     std::string HandleRequest(const int &amount);
 
     bool mValid;

@@ -144,17 +144,18 @@ void ServerInterface::Host() {
 
     Server *server = new Server(mServerInfo, mPairInfo);
 
-    if(server->Valid()) {
+    server->Run(mServerName);
+    //if(server->Valid()) {
 
-        server->Run(mServerName);
-    }
-    else {
+    //    server->Run(mServerName);
+    //}
+    //else {
 
-        std::cout << "Server Init Error! Please check your environment." << std::endl;
-        std::cout << std::endl;
+    //    std::cout << "Server Init Error! Please check your environment." << std::endl;
+    //    std::cout << std::endl;
 
-        mServerName = "";
-    }
+    //    mServerName = "";
+    //}
 
     delete server;
     mServer = false;

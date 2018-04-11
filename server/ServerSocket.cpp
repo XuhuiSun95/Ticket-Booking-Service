@@ -70,13 +70,11 @@ int ServerSocket::Accept() {
     return new_socket;
 }
 
-std::string GetMessage(const int &sock) {
+std::string ServerSocket::GetMessage(const int &sock) {
 
-    char* buf = new char[1024];
-    //mValread = read(sock, buf, 1024);
-    read(sock, buf, 1024);
-    std::string message = buf;
-    delete[] buf;
+    mValread = read(sock, buffer, 1024);
+    std::string message = buffer;
+    memset(buffer, 0, sizeof(buffer));
     
     return message;
 }
@@ -88,7 +86,13 @@ void ServerSocket::SendMessage(const int &sock, const std::string &message) {
     close(sock);
 }
 
-void ServerSocket::ForwardTicket() {
+std::string ServerSocket::ForwardTicket(const std::string &message) {
 
+    send(mSockfd, message.c_str(), message.length(), 0);
 
+    mValread = read(mSockfd, buffer, 1024);
+
+    std::string reply = buffer;
+
+    return reply;
 }

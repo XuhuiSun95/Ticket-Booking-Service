@@ -21,7 +21,7 @@ public:
     int Accept();
     std::string GetMessage(const int &sock);
     void SendMessage(const int &sock, const std::string &message);
-    void ForwardTicket();
+    std::string ForwardTicket(const std::string &message);
 
 private:
 

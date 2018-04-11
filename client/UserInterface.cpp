@@ -127,7 +127,6 @@ void UserInterface::BuyTickets() {
                 request.clear();
             }
         }
-        request += "\n";
 
         client->RequestTicket(request);
     }

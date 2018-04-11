@@ -28,15 +28,15 @@ void Server::Run(const std::string &type) {
     while(true) {
 
         int sockfd = mServer->Accept();
-        std::thread t(&Server::ProcessTicket, std::ref(sockfd), std::ref(type));
+        std::thread t(&Server::ProcessTicket, this, sockfd, type);
         t.detach();
-
     }
 }
 
-void Server::ProcessTicket(int &sock, std::string &type) {
+void Server::ProcessTicket(const int &sock, const std::string &type) {
 
     std::string msg = mServer->GetMessage(sock);
+    std::cout << "Message Received: " << msg << std::endl;
 
     if(msg.find(type)!=std::string::npos) {
 
@@ -48,11 +48,25 @@ void Server::ProcessTicket(int &sock, std::string &type) {
         mtx.unlock();
 
         mServer->SendMessage(sock, reply);
-
+        std::cout << "Ticket left: " << mTickets << std::endl;
     } else {
 
+        std::cout << "Forward Message!" << std::endl;
+
+        ServerSocket* pair = new ServerSocket();
+        pair->Init(mPairInfo.first, mPairInfo.second, false);
+
+        std::string reply = pair->ForwardTicket(msg);
+        std::cout << "Receive pair reply: " << reply << std::endl;
+
+        delete pair;
+
+        mServer->SendMessage(sock, reply);
+        std::cout << "Forward reply!" << std::endl;
         
     }
+
+    std::cout << std::endl;
 }
 
 std::string Server::HandleRequest(const int &amount) {
