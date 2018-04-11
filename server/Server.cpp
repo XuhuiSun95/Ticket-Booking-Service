@@ -63,7 +63,6 @@ void Server::ProcessTicket(const int &sock, const std::string &type) {
 
         mServer->SendMessage(sock, reply);
         std::cout << "Forward reply!" << std::endl;
-        
     }
 
     std::cout << std::endl;
@@ -77,7 +76,6 @@ std::string Server::HandleRequest(const int &amount) {
         return "Not enought ticket to sale!";
     }
     else {
-
         mTickets = mTickets - amount;
         return "Success!";
     }

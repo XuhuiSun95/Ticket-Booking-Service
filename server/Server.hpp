@@ -1,10 +1,8 @@
 #ifndef SERVER_HPP
 #define SERVER_HPP
 
-#include <functional>
 #include <thread>
 #include <mutex>
-#include <vector>
 #include "ServerSocket.hpp"
 
 class Server {
