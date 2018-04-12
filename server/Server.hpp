@@ -13,7 +13,6 @@ public:
            const std::pair<std::string, int> &pair);
     ~Server();
 
-    bool Valid();
     void Run(const std::string &type);
 
 private:
@@ -21,7 +20,6 @@ private:
     void ProcessTicket(const int &sock, const std::string &type);
     std::string HandleRequest(const int &amount);
 
-    bool mValid;
     int mTickets;
     ServerSocket* mServer;
     std::pair<std::string, int> mServerInfo;

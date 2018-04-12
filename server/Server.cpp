@@ -3,7 +3,6 @@
 Server::Server(const std::pair<std::string, int> &server,
                const std::pair<std::string, int> &pair) {
 
-    mValid = false;
     mTickets = 50;
     mServer = new ServerSocket();
     mServerInfo = server;
@@ -15,15 +14,9 @@ Server::~Server() {
     delete mServer;
 }
 
-bool Server::Valid() {
-
-    return mValid;
-}
-
 void Server::Run(const std::string &type) {
 
     mServer->Init(mServerInfo.first, mServerInfo.second, true);
-    mValid = mServer->Valid();
 
     while(true) {
 
