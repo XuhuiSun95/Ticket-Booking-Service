@@ -25,18 +25,23 @@ public:
     //  @param port The socket port number
     //  @param host True if create a host socket, otherwise create a forward socket
     void Init(const std::string &ipaddress, const int &port, bool host=true);
-    //  Check if Socket Init() correctly
+    //  Check if ServerSocket initialize correctly
     bool Valid();
-    //  Function used to accept clients
-    //  return the socket file descriptor
+    //  Accept the connecting clients
+    //  @return The accepted socket file descriptor
     int Accept();
-    //  Function used to read message sent from client
+    //  Read message sent from accepted client
+    //  @param sock The socket file descriptor that trying to read
+    //  @return The message received in string
     std::string GetMessage(const int &sock);
-    //  Function used to send back message to client
+    //  Send back message to pervious client
+    //  @param sock The socket file descriptor that trying to send
+    //  @param message The reply message
     void SendMessage(const int &sock, const std::string &message);
-    //  Function used to forward message to other server
-    //  if the requested type ticket is sold on other server
-    //  return message get back from other server
+    //  Forward message to the pair server if the requested type 
+    //  ticket is not sold on this server
+    //  @param message Message needs to forward
+    //  @return Message replied from the pair server
     std::string ForwardTicket(const std::string &message);
 
 private:

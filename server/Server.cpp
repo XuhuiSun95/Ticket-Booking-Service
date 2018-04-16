@@ -44,6 +44,7 @@ void Server::ProcessTicket(const int &sock, const std::string &type) {
         mServer->SendMessage(sock, reply);
     } else {
 
+        //  Create a new forward socket to handle the forward operation
         ServerSocket* pair = new ServerSocket();
         pair->Init(mPairInfo.first, mPairInfo.second, false);
 

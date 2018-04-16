@@ -14,11 +14,20 @@ class ClientSocket {
 
 public:
 
+    //  ClientSocket Constructor
     ClientSocket();
+    //  ClientSocket Destructor
     ~ClientSocket();
 
+    //  Initialize the ClientSocket(socket and connect)
+    //  @param ipaddress The IP address going to connect
+    //  @param port The port number going to connect
     void Init(const std::string &ipaddress, const int &port);
+    //  Check if the initialization is valid
+    //  @return True if successful connected, otherwise return False
     bool Valid();
+    //  Send request message to the connected server
+    //  @param message The request message
     void RequestTicket(const std::string &message);
 
 private:

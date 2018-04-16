@@ -141,6 +141,7 @@ void ServerInterface::Host() {
 
     std::cout << "Hosting..." << std::endl;
     mServer = true;
+    std::cout << std::endl;
 
     Server *server = new Server(mServerInfo, mPairInfo);
 
