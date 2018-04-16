@@ -1,6 +1,7 @@
 #ifndef SERVERINTERFACE_HPP
 #define SERVERINTERFACE_HPP
 
+#include <climits>
 #include <iomanip>
 #include "Server.hpp"
 

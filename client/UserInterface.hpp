@@ -2,6 +2,7 @@
 #define USERINTERFACE_HPP
 
 #include <algorithm>
+#include <climits>
 #include <iomanip>
 #include <random>
 #include <vector>

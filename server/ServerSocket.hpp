@@ -2,6 +2,7 @@
 #define SERVERSOCKET_HPP
 
 #include <chrono>
+#include <cstring>
 #include <iostream>
 #include <string>
 #include <thread>
