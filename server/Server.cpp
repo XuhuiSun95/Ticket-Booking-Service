@@ -39,26 +39,23 @@ void Server::ProcessTicket(const int &sock, const std::string &type) {
         mtx.lock();
         std::string reply = HandleRequest(ticket);
         mtx.unlock();
+        std::cout << "Ticket left: " << mTickets << std::endl;
 
         mServer->SendMessage(sock, reply);
-        std::cout << "Ticket left: " << mTickets << std::endl;
     } else {
-
-        std::cout << "Forward Message!" << std::endl;
 
         ServerSocket* pair = new ServerSocket();
         pair->Init(mPairInfo.first, mPairInfo.second, false);
 
+        std::cout << "Forward Message!" << std::endl;
         std::string reply = pair->ForwardTicket(msg);
         std::cout << "Receive pair reply: " << reply << std::endl;
 
         delete pair;
 
-        mServer->SendMessage(sock, reply);
         std::cout << "Forward reply!" << std::endl;
+        mServer->SendMessage(sock, reply);
     }
-
-    std::cout << std::endl;
 }
 
 std::string Server::HandleRequest(const int &amount) {

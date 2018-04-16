@@ -1,8 +1,10 @@
 #ifndef CLIENTSOCKET_HPP
 #define CLIENTSOCKET_HPP
 
+#include <chrono>
 #include <iostream>
 #include <string>
+#include <thread>
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <sys/types.h>

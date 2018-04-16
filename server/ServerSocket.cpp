@@ -84,6 +84,7 @@ std::string ServerSocket::GetMessage(const int &sock) {
 
 void ServerSocket::SendMessage(const int &sock, const std::string &message) {
 
+    std::this_thread::sleep_for(std::chrono::seconds(5));
     send(sock, message.c_str(), message.length(), 0);
 
     close(sock);
@@ -91,6 +92,7 @@ void ServerSocket::SendMessage(const int &sock, const std::string &message) {
 
 std::string ServerSocket::ForwardTicket(const std::string &message) {
 
+    std::this_thread::sleep_for(std::chrono::seconds(5));
     send(mSockfd, message.c_str(), message.length(), 0);
 
     mValread = read(mSockfd, buffer, 1024);

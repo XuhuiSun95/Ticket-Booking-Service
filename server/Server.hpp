@@ -1,7 +1,6 @@
 #ifndef SERVER_HPP
 #define SERVER_HPP
 
-#include <thread>
 #include <mutex>
 #include "ServerSocket.hpp"
 

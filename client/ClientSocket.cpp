@@ -42,8 +42,9 @@ bool ClientSocket::Valid() {
 
 void ClientSocket::RequestTicket(const std::string &message) {
 
-    send(mSockfd, message.c_str(), message.length(), 0);
     std::cout << "Request send" << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+    send(mSockfd, message.c_str(), message.length(), 0);
 
     mValread = read(mSockfd, buffer, 1024);
     std::cout << buffer << std::endl;
